@@ -19,6 +19,19 @@ class AnnonceController extends Controller
         $Annonce = new Annonce();
         $form = $this->get('form.factory')->create(new AnnonceType(), $Annonce);
 
+        if ($this->get('request')->getMethod() == 'POST')
+        {
+            if ($form->handleRequest($request)->isValid()) {
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($Annonce);
+              $em->flush();
+              
+              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+              //return $this->redirect($this->generateUrl('oc_platform_view', array('id' => $advert->getId())));
+            }
+        }
+
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
