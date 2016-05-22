@@ -18,10 +18,10 @@ class AnnonceType extends AbstractType
             ->add('title')
             ->add('username')
             ->add('password')
-            ->add('ip')
+            //->add('ip')
             ->add('description')
-            ->add('latitude')
-            ->add('longitude')
+            //->add('latitude')
+            //->add('longitude')
         ;
     }
     

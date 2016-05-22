@@ -1,13 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <div class="container">
-            <h1>Le petit coin</h1>
-            <p>Bientôt, un super site !</p>
-        </div>
-{% endblock %}
+    <div class="container">
+        <h1>Le petit coin</h1>
+        <h2>{{ form_label(form.title, 'Quoi ?') }}</h2>
+        {{ form_errors(form.title) }}
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="altern_action">Acheter</button>
+          </span>
+          {{ form_widget(form.title, {'attr' : {class:'form-control'}}) }}
+        </div><!-- /input-group -->
 
-{% block stylesheets %}
-<style>
-</style>
+        <div id="new_data" style="display:none;">
+            <h2>Description</h2>
+            <textarea class="form-control" rows="5" placeholder="…" required></textarea>
+
+
+            <h2>{{ form_label(form.username, 'Qui ?') }}</h2>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon2"><i class="glyphicon glyphicon-lock"></i></span>
+                <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
+            </div>
+        </div>
+        
+        <h2>Où ?</h2>
+    </div>
+
+<script>
+    // Si je n'étais pas pressé, j'aurais utilisé Jquery
+    var acheter = true;
+    document.getElementById('altern_action').onclick = function(){
+        if (acheter){
+            document.getElementById('altern_action').innerHTML = 'Vendre';
+            document.getElementById('new_data').style.display = 'block';
+            acheter = false;
+        }
+        else{
+            document.getElementById('altern_action').innerHTML = 'Acheter';
+            document.getElementById('new_data').style.display = 'none';
+            acheter = true;
+        }
+    };
+</script>
 {% endblock %}
