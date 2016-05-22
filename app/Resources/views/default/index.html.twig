@@ -29,10 +29,17 @@
         </div>
         
         <h2>Où ?</h2>
+        <div id="locationField">
+          <input id="autocomplete" class="form-control" placeholder="Enter your address"
+                  type="text"></input>
+        </div>
+
     </div>
 
 <script>
     // Si je n'étais pas pressé, j'aurais utilisé Jquery
+
+    // Passer du mode "Achat" au mode "Vente"
     var acheter = true;
     document.getElementById('altern_action').onclick = function(){
         if (acheter){
@@ -46,5 +53,32 @@
             acheter = true;
         }
     };
+
+    // Api google pour avoir la latitude / longitude
+
+    var autocomplete;
+
+    function initAutocomplete() {
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+      autocomplete = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+          {types: ['geocode']});
+
+      // When the user selects an address from the dropdown, populate the address
+      // fields in the form.
+      autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    function fillInAddress() {
+      // Get the place details from the autocomplete object.
+      var place = autocomplete.getPlace();
+
+      console.log(place.geometry.location.lat());
+      console.log(place.geometry.location.lng());
+    }
+
+    initAutocomplete();
+
 </script>
 {% endblock %}
