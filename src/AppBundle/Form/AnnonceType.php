@@ -16,10 +16,10 @@ class AnnonceType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('username')
-            ->add('password', 'password')
+            ->add('username', null, array('required' => false))
+            ->add('password', 'password', array('required' => false))
             //->add('ip')
-            ->add('description', 'textarea')
+            ->add('description', 'textarea', array('required' => false))
             ->add('latitude')
             ->add('longitude')
         ;

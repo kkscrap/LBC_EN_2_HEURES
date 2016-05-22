@@ -22,11 +22,23 @@ class AnnonceController extends Controller
         if ($this->get('request')->getMethod() == 'POST')
         {
             if ($form->handleRequest($request)->isValid()) {
-              $em = $this->getDoctrine()->getManager();
-              $em->persist($Annonce);
-              $em->flush();
-              
-              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                $em = $this->getDoctrine()->getManager();
+
+                if (is_null($Annonce->getUsername())){ // On considère une recherche
+                    $annonces = $em->getRepository('AppBundle:Annonce')->findAll();
+                    return $this->render('default/results.html.twig', array(
+                            'annonces' => $annonces,
+                            'query' => $Annonce->getTitle(),
+                        ));
+                }
+                else{ // Considère une nouvelle entrée
+                    $Annonce->setIp($this->container->get('request')->getClientIp());
+                    $em->persist($Annonce);
+                    $em->flush();
+            
+                    $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                }
+                
 
               //return $this->redirect($this->generateUrl('oc_platform_view', array('id' => $advert->getId())));
             }
