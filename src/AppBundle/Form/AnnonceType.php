@@ -17,11 +17,11 @@ class AnnonceType extends AbstractType
         $builder
             ->add('title')
             ->add('username')
-            ->add('password')
+            ->add('password', 'password')
             //->add('ip')
-            ->add('description')
-            //->add('latitude')
-            //->add('longitude')
+            ->add('description', 'textarea')
+            ->add('latitude')
+            ->add('longitude')
         ;
     }
     

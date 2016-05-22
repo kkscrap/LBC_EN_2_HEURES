@@ -3,37 +3,48 @@
 {% block body %}
     <div class="container">
         <h1>Le petit coin</h1>
-        <h2>{{ form_label(form.title, 'Quoi ?') }}</h2>
-        {{ form_errors(form.title) }}
-        <div class="input-group">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button" id="altern_action">Acheter</button>
-          </span>
-          {{ form_widget(form.title, {'attr' : {class:'form-control'}}) }}
-        </div><!-- /input-group -->
-
-        <div id="new_data" style="display:none;">
-            <h2>Description</h2>
-            <textarea class="form-control" rows="5" placeholder="…" required></textarea>
-
-
-            <h2>{{ form_label(form.username, 'Qui ?') }}</h2>
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+            <h2>{{ form_label(form.title, 'Quoi ?') }}</h2>
+            {{ form_errors(form.title) }}
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon2"><i class="glyphicon glyphicon-lock"></i></span>
-                <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
-            </div>
-        </div>
-        
-        <h2>Où ?</h2>
-        <div id="locationField">
-          <input id="autocomplete" class="form-control" placeholder="Enter your address"
-                  type="text"></input>
-        </div>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="altern_action">Acheter</button>
+              </span>
+              {{ form_widget(form.title, {'attr' : {class:'form-control'}}) }}
+            </div><!-- /input-group -->
 
+            <div id="new_data" style="display:none;">
+                <h2>{{ form_label(form.description, 'Description') }}</h2>
+                {{ form_widget(form.description, {'attr' : {class:'form-control', 'rows':'5', 'placeholder' : '…'}}) }}
+
+
+                <h2>{{ form_label(form.username, 'Qui ?') }}</h2>
+                {{ form_errors(form.username) }}
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ form_widget(form.username, {'attr' : {class:'form-control', 'aria-describedby':'basic-addon1', 'placeholder' : 'Nom d\'utilisateur'}}) }}
+                </div>
+                {{ form_errors(form.password) }}
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon2"><i class="glyphicon glyphicon-lock"></i></span>
+                    {{ form_widget(form.password, {'attr' : {class:'form-control', 'aria-describedby':'basic-addon2', 'placeholder' : 'Mot de passe'}}) }}
+                </div>
+            </div>
+            
+            <h2>Où ?</h2>
+            {{ form_errors(form.latitude) }}
+            {{ form_errors(form.longitude) }}
+            <div style="display:none;">
+                {{ form_row(form.latitude) }}
+                {{ form_row(form.longitude) }}
+            </div> 
+            <div id="locationField">
+              <input id="autocomplete" class="form-control" placeholder="Entrez votre adresse"
+                      type="text"></input>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="margin:1em;">Envoyer</button>
+        {{ form_end(form) }}
     </div>
 
 <script>
@@ -74,8 +85,8 @@
       // Get the place details from the autocomplete object.
       var place = autocomplete.getPlace();
 
-      console.log(place.geometry.location.lat());
-      console.log(place.geometry.location.lng());
+      document.getElementById('annonce_latitude').value = place.geometry.location.lat();
+      document.getElementById('annonce_longitude').value = place.geometry.location.lng();
     }
 
     initAutocomplete();
