@@ -1,0 +1,24 @@
+C'est un code source que je dois rendre en 2 heures pour qu'une entreprise me teste.
+Alors je n'y touche plus même si c'est loin d'être top.
+
+
+Ce qu'il resterait à faire :
+
+- Installer elasticsearch pour faire des supers recherches
+(Là, j'ai un soucis chelou d'accès à mon compte root sur ma machine perso o_O Du coup je n'ai pas pu l'installer et j'ai fais un findAll quelque soit la demande)
+
+- Une politique de cache
+- Captcha
+- Enregistrer une "humain readable adress"
+- Possibilitée d'éditer les annonces par leur créateur
+- Chiffrer le MDP en BDD
+- Voir le mail, le téléphone de l'annonceur
+- Système d'upload de photo
+- Un template bootstrap moins vanilla
+- Une page pour voir une seule annonce
+- Tester plus sérieusement si c'est une recherche ou une nouvelle annonce
+- Tester si on affiche une erreur crédible si le visiteur n'a pas JS
+- Peut-être du jquery à la place de mes getElementById
+- Faire des recherches en GET pour qu'on puisse copier-coller l'url
+
+Puis ça pourrait partir en prod :)
