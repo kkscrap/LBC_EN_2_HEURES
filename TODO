@@ -20,5 +20,5 @@ Ce qu'il resterait à faire :
 - Tester si on affiche une erreur crédible si le visiteur n'a pas JS
 - Peut-être du jquery à la place de mes getElementById
 - Faire des recherches en GET pour qu'on puisse copier-coller l'url
-
+- Une vraie validation du formulaire (et un check humain pour s'assurer du contenu ?)
 Puis ça pourrait partir en prod :)
